@@ -1,0 +1,110 @@
+<md-card class="example-card text-center">
+  <md-card-header>
+    <div md-card-avatar class="example-header-image"></div>
+    <md-card-title>{{ 'calcula_sueldo' | translate }}</md-card-title>
+  </md-card-header>
+  
+  <md-card-content>
+
+    <md-input-container>
+      <input mdInput
+        type="number"
+        placeholder="{{ 'introduce_sueldo' | translate }}"
+        [(ngModel)]="sueldo"
+        name="sueldo"
+        (ngModelChange)="onChange($event)"
+        min="1000"
+        aria-checked="true"
+        step="100">
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput 
+        type="number"
+        placeholder="{{ 'introduce_irpf' | translate }}"
+        [(ngModel)]="irpf"
+        (ngModelChange)="onChange($event)"
+        name="irpf"
+        min="1"
+        max="45"
+        step="1">
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput 
+        type="number"
+        placeholder="{{ 'introduce_pagas' | translate }}"
+        [(ngModel)]="pagas"
+        name="pagas"
+        (ngModelChange)="onChange($event)"
+        min="12"
+        max="20"
+        step="1">
+    </md-input-container>
+  </md-card-content>
+</md-card>
+
+<div [hidden]="!isFormFull">
+  <md-card class="example-card"  >
+  <md-card-header>
+    <div md-card-avatar class="example-header-image"></div>
+    <md-card-title>{{ 'resultados' | translate }}</md-card-title>
+  </md-card-header>
+  
+  <md-card-content>
+
+
+
+      <div class="container margin-top text-left">
+				<div class="well">
+				
+				<h1>{{ 'gastos' | translate }}</h1>
+
+				<table class="table table-striped">
+				<tr>
+					<td>{{ 'contingencias_comunes' | translate }} 4,7%: </td>
+					<td>{{resultado.Contingencias | currency:'EUR'}}</td>
+				</tr>
+				<tr>
+					<td>{{ 'desempleo' | translate }} 1,55%: </td>
+					<td>{{resultado.Desempleo | currency:'EUR'}}</td>
+				</tr>
+				<tr>
+					<td>{{ 'formacion_profesional' | translate }} 0,1%: </td>
+					<td>{{resultado.Fp | currency:'EUR'}}</td>
+				</tr>
+				<tr>
+					<th>{{ 'total_contingencias' | translate }}: </th>
+					<th>{{resultado.total_naturales | currency:'EUR'}}</th>
+				</tr>
+				<tr>
+					<th>{{ 'total_irpf' | translate }}: </th>
+					<th>{{resultado.impuesto_irpf | currency:'EUR'}}</th>
+				</tr>
+			</table>
+
+      <h4>{{ 'total_puestos_al_mes' | translate }}: {{resultado.total_impuestos | currency:'EUR'}}</h4>
+      <h2>{{ 'ingresos_mensuales' | translate }}: {{resultado.sueldo_final | currency:'EUR'}}</h2>
+			<p>{{ 'resumen_01' | translate }}</p>
+			<p class="Cursive">{{ 'resumen_02' | translate }}</p>
+
+			<!--		Parte de Paga extra		 -->
+			<section  class="container">
+			  <p>{{ 'resumen_03' | translate }} / {{resultado.paga + 12}} {{ 'pagas' | translate }} ({{resultado.paga}} {{ 'pagas' | translate }} {{ 'extras' | translate }}), {{ 'resumen_04' | translate }} {{resultado.anual | currency:'EUR'}}</p>
+						
+				<p>{{ 'resumen_05' | translate }} {{ resultado.mes_extra  | currency:'EUR'}} {{ 'resumen_06' | translate }} {{resultado.anual | currency:'EUR'}} - irpf  {{resultado.impuesto_irpf | currency:'EUR'}}  </p>
+						
+				<p><strong>{{ 'total' | translate }}</strong> = {{resultado.anual - resultado.impuesto_irpf | currency:'EUR'}}</p>
+						
+			</section>
+
+					
+
+				</div>
+			</div>
+
+      
+    </md-card-content>
+  </md-card>
+
+</div>

@@ -1,0 +1,19 @@
+.example-card {
+  width: 80%;
+  margin: 2em auto;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+md-input-container {
+    width: 60%;
+    margin: 2em auto;
+    
+}
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
